@@ -1,0 +1,14 @@
+.title emitter follower
+* simulation of an emitter follower
+* the BC transistor parameters are chosen randomly
+.model BC npn ( IS=7.9E-15 VAF=75 BF=200)
+VCC vcc 0 5
+Vin in 0 dc 0 ac 1 sin(2 0.5 200)
+Q1 vcc in out BC
+R1 out 0 1k
+.control
+*tran 10u 10m
+*plot v(in) v(out)
+.endc
+
+.end

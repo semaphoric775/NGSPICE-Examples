@@ -1,0 +1,20 @@
+.title LED Driver
+* BJT LED driver
+.model Q2N3904	NPN(Is=6.734f Xti=3 Eg=1.11 Vaf=74.03 Bf=416.4 Ne=1.259
++		Ise=6.734f Ikf=66.78m Xtb=1.5 Br=.7371 Nc=2 Isc=0 Ikr=0 Rc=1
++		Cjc=3.638p Mjc=.3085 Vjc=.75 Fc=.5 Cje=4.493p Mje=.2593 Vje=.75
++		Tr=239.5n Tf=301.2p Itf=.4 Vtf=4 Xtf=2 Rb=10)
+.model DMOD D(bv=50 is=1e-13 n=1.05)
+Vin in 0 dc 0 ac 0 pulse(0 3.3 2NS 2NS 2NS 0.05m 0.1m)
+VCC vcc 0 3.3
+Q1 2 qin 0 Q2N3904
+R1 in qin 10k
+D1 vcc 1 DMOD
+R2 1 2 330
+.control
+* tran 500u 1m
+* plot current through LED
+* plot (v(1)-v(2))/330
+.endc
+
+.end
